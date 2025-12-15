@@ -1,14 +1,18 @@
-package com.mycompany.quizgame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizConfigScreen extends JFrame {
 
     // Komponenty GUI (Deklaracja Pól Klasy)
-    private JTextField nameField;
     private JSpinner questionCountSpinner;
     private JSpinner playerCountSpinner;
     private JComboBox<String> gameTypeComboBox;
@@ -19,16 +23,12 @@ public class QuizConfigScreen extends JFrame {
         setTitle("Konfiguracja Gry Quizowej");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Użycie pack() jest lepsze, ale ustawiamy stały rozmiar, aby pasował do GridLayout
-        setSize(400, 350); 
-        // 6 wierszy, 2 kolumny, odstępy 10px
-        setLayout(new GridLayout(6, 2, 10, 10)); 
+        setSize(400, 350);
+        // 5 wierszy, 2 kolumny, odstępy 10px
+        setLayout(new GridLayout(5, 2, 10, 10)); 
         getContentPane().setBackground(Colors.LIGHT_BLUE);
         // 2. Inicjalizacja komponentów (w konstruktorze)
         
-        // Imię/Nazwa Gracza
-        add(new JLabel("  Imię/Nazwa Gracza:"));
-        nameField = new JTextField("Gracz 1");
-        add(nameField);
 
         // Liczba pytań (Spinner - pole z przyciskami)
         // Wartość początkowa: 10, Min: 5, Max: 50, Krok: 5
@@ -53,7 +53,7 @@ public class QuizConfigScreen extends JFrame {
         // Pusta przestrzeń dla lepszego wyglądu
         add(new JLabel("")); 
         add(new JLabel(""));
-        
+
         // Przycisk Start
         startButton = new JButton("Rozpocznij Grę");
         add(startButton);
@@ -79,24 +79,62 @@ public class QuizConfigScreen extends JFrame {
      */
     private void pobierzUstawienia() {
         // Pobieranie danych z komponentów
-        String playerName = nameField.getText();
         int numQuestions = (int) questionCountSpinner.getValue();
         int numPlayers = (int) playerCountSpinner.getValue();
         String quizType = (String) gameTypeComboBox.getSelectedItem();
 
+        // Poprośmy o imiona dopiero po kliknięciu "Rozpocznij Grę"
+        String[] playerNames;
+        if (numPlayers == 1) {
+            String single = (String) JOptionPane.showInputDialog(
+                    this,
+                    "Wprowadź imię gracza:",
+                    "Imię gracza",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    "Gracz 1"
+            );
+            if (single == null) return; // anulowano
+            playerNames = new String[]{single};
+        } else {
+            JPanel namesPanel = new JPanel(new GridLayout(numPlayers, 2, 5, 5));
+            JTextField[] nameFields = new JTextField[numPlayers];
+            for (int i = 0; i < numPlayers; i++) {
+                namesPanel.add(new JLabel("Imię Gracza " + (i + 1) + ":"));
+                JTextField tf = new JTextField("Gracz " + (i + 1));
+                nameFields[i] = tf;
+                namesPanel.add(tf);
+            }
+
+            int res = JOptionPane.showConfirmDialog(this, namesPanel, "Wprowadź imiona graczy",
+                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            if (res != JOptionPane.OK_OPTION) return; // anulowano
+
+            playerNames = new String[numPlayers];
+            for (int i = 0; i < numPlayers; i++) {
+                playerNames[i] = nameFields[i].getText();
+            }
+        }
+
         // Wyświetlanie informacji
-        String info = String.format(
-            "--- Ustawienia Quizu ---\n" +
-            "Gracz: %s\n" +
-            "Liczba Pytań: %d\n" +
-            "Liczba Graczy: %d\n" +
-            "Typ: %s",
-            playerName, numQuestions, numPlayers, quizType
-        );
+        StringBuilder infoBuilder = new StringBuilder();
+        infoBuilder.append("--- Ustawienia Quizu ---\n");
+        infoBuilder.append("Gracze:\n");
+        for (int i = 0; i < playerNames.length; i++) {
+            infoBuilder.append(String.format("  %d. %s\n", i + 1, playerNames[i]));
+        }
+        infoBuilder.append(String.format("Liczba Pytań: %d\n", numQuestions));
+        infoBuilder.append(String.format("Liczba Graczy: %d\n", numPlayers));
+        infoBuilder.append(String.format("Typ: %s", quizType));
+
+        JOptionPane.showMessageDialog(this, infoBuilder.toString(), "Gra się rozpoczyna!", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose(); // Zamykamy okno konfiguracji
         
-        JOptionPane.showMessageDialog(this, info, "Gra się rozpoczyna!", JOptionPane.INFORMATION_MESSAGE);
-        
-        // Tutaj w przyszłości można wstawić kod uruchamiający okno gry
+        // Uruchamiamy okno gry w wątku Swinga
+        SwingUtilities.invokeLater(() -> {
+            new GameScreen(playerNames, numQuestions, quizType);
+        });
     }
 
     public static void main(String[] args) {
