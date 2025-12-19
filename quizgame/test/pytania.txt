@@ -1,0 +1,300 @@
+Jaka jest stolica Polski?
+Kraków
+Warszawa
+Gdańsk
+Poznań
+2
+Ile to 2 + 2 * 2?
+6
+8
+4
+10
+1
+W jakim języku piszemy ten program?
+Python
+C++
+Java
+HTML
+3
+Kto był pierwszym królem Polski?
+Mieszko I
+Bolesław Chrobry
+Kazimierz Wielki
+Władysław Jagiełło
+2
+Największa planeta Układu Słonecznego to?
+Mars
+Ziemia
+Jowisz
+Wenus
+3
+W którym roku wybuchła II wojna światowa?
+1914
+1939
+1945
+1920
+2
+Co oznacza skrót CPU?
+Central Processing Unit
+Computer Personal Unit
+Central Power Unit
+Computer Processing User
+1
+Ile bajtów ma kilobajt (1 KiB)?
+1000
+1024
+8
+512
+2
+Kto napisał "Pana Tadeusza"?
+Juliusz Słowacki
+Adam Mickiewicz
+Henryk Sienkiewicz
+Bolesław Prus
+2
+Stolicą Francji jest?
+Berlin
+Madryt
+Paryż
+Rzym
+3
+Który pierwiastek chemiczny ma symbol O?
+Złoto
+Tlen
+Wodór
+Srebro
+2
+Ile nóg ma pająk?
+6
+8
+4
+10
+2
+Jakim zwierzęciem jest Geralt w grze Wiedźmin?
+Człowiekiem (mutantem)
+Wilkiem
+Smokiem
+Wampirem
+1
+Kto stworzył grę Minecraft?
+Notch
+Gabe Newell
+Hideo Kojima
+Shigeru Miyamoto
+1
+Najdłuższa rzeka na świecie to?
+Nil
+Amazonka
+Wisła
+Missisipi
+2
+Wzór na pole kwadratu to?
+a * b
+a * a
+2 * a
+a + a
+2
+Który kolor NIE znajduje się na fladze Polski?
+Biały
+Czerwony
+Niebieski
+Żaden z powyższych
+3
+Co to jest RAM?
+Pamięć trwała
+Pamięć operacyjna
+Procesor
+Karta graficzna
+2
+Który system operacyjny ma logo Pingwina?
+Windows
+MacOS
+Linux
+Android
+3
+Gdzie leży Egipt?
+W Europie
+W Azji
+W Afryce
+W Ameryce
+3
+Ile wynosi liczba PI (w przybliżeniu)?
+3.14
+2.15
+4.50
+3.00
+1
+Jaki jest chemiczny wzór wody?
+CO2
+H2O
+O2
+NaCl
+2
+Kto namalował "Mona Lisę"?
+Van Gogh
+Picasso
+Da Vinci
+Matejko
+3
+Ile kontynentów jest na Ziemi (tradycyjnie)?
+5
+6
+7
+8
+3
+Waluta w Wielkiej Brytanii to?
+Euro
+Dolar
+Funt
+Złoty
+3
+Z ilu bitów składa się bajt?
+4
+8
+16
+32
+2
+Stolicą USA jest?
+Nowy Jork
+Los Angeles
+Waszyngton
+Chicago
+3
+Ile to 5 * 5?
+20
+25
+30
+15
+2
+Jak nazywa się twórca Facebooka?
+Elon Musk
+Bill Gates
+Mark Zuckerberg
+Steve Jobs
+3
+W którym roku Polska weszła do Unii Europejskiej?
+2000
+2004
+1999
+2010
+2
+Które zwierzę jest najszybsze na lądzie?
+Lew
+Gepard
+Koń
+Antylopa
+2
+Co jest stolicą Niemiec?
+Monachium
+Berlin
+Hamburg
+Frankfurt
+2
+Ile zer ma milion?
+5
+6
+9
+12
+2
+Kto odkrył Amerykę (dla Europy)?
+Krzysztof Kolumb
+Vasco da Gama
+Ferdynand Magellan
+James Cook
+1
+Jaki gaz przeważa w atmosferze Ziemi?
+Tlen
+Azot
+Dwutlenek węgla
+Wodór
+2
+Ile wynosi pierwiastek z 64?
+6
+7
+8
+9
+3
+Jak nazywa się najwyższy szczyt w Polsce?
+Giewont
+Rysy
+Śnieżka
+Kasprowy Wierch
+2
+Co oznacza skrót HTML?
+Hyper Text Markup Language
+High Tech Modern Language
+Home Tool Markup Language
+Hyperlinks and Text Markup Language
+1
+Który instrument ma klawisze?
+Gitara
+Skrzypce
+Fortepian
+Trąbka
+3
+Kto jest autorem teorii względności?
+Isaac Newton
+Albert Einstein
+Nikola Tesla
+Galileusz
+2
+Jak nazywa się polski hymn narodowy?
+Rota
+Mazurek Dąbrowskiego
+Bogurodzica
+Oda do radości
+2
+Ile dni ma rok przestępny?
+365
+366
+364
+360
+2
+Stolicą Japonii jest?
+Seul
+Pekin
+Tokio
+Bangkok
+3
+Która planeta jest najbliżej Słońca?
+Wenus
+Merkury
+Ziemia
+Mars
+2
+Jaki jest symbol chemiczny złota?
+Ag
+Au
+Fe
+Cu
+2
+Ile to 100 podzielić przez 4?
+20
+25
+24
+10
+2
+Kto wyreżyserował film "Park Jurajski"?
+George Lucas
+Steven Spielberg
+James Cameron
+Ridley Scott
+2
+Jak nazywa się główny bohater serii "Harry Potter"?
+Ron Weasley
+Harry Potter
+Draco Malfoy
+Hermiona Granger
+2
+Co mierzy termometr?
+Ciśnienie
+Temperaturę
+Wilgotność
+Prędkość wiatru
+2
+Ile boków ma trójkąt?
+3
+4
+5
+6
+1

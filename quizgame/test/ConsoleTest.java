@@ -21,7 +21,7 @@ public class ConsoleTest {
         System.out.println("-----------------");
         
         for (int i = 0; i < q.getAnswers().size(); i++) {
-            // Wyświetlamy opcje jako 1. Berlin, 2. Paryż...
+            // Wyświetlenie odpowiedzi z numeracją
             System.out.println((i + 1) + ". " + q.getAnswers().get(i).getText());
         }
 
@@ -32,21 +32,20 @@ public class ConsoleTest {
         if (scanner.hasNextInt()) {
             int choice = scanner.nextInt();
             
-            // Sprawdzamy, czy numer mieści się w zakresie (np. 1-3)
+            // Sprawdzenie poprawności odpowiedzi
             if (choice > 0 && choice <= answers.size()) {
-                // Pobieramy odpowiedź (odejmujemy 1, bo lista jest liczona od 0)
                 Question.Answer selectedAnswer = q.getAnswers().get(choice - 1);
                 
                 if (selectedAnswer.isCorrect()) {
-                    System.out.println("✅ BRAWO! To poprawna odpowiedź!");
+                    System.out.println(" BRAWO! To poprawna odpowiedź!");
                 } else {
-                    System.out.println("❌ Niestety, to błąd.");
+                    System.out.println(" Niestety, to błąd.");
                 }
             } else {
-                System.out.println("⚠️ Nie ma takiej opcji na liście.");
+                System.out.println(" Nie ma takiej opcji na liście.");
             }
         } else {
-            System.out.println("⚠️ Proszę wpisać liczbę!");
+            System.out.println(" Proszę wpisać liczbę!");
         }
 
         scanner.close();
