@@ -10,7 +10,7 @@ public class JDBC {
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "P@$SbazA434"; 
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection Connection() throws SQLException {
         // Ta linia połączy Cię z bazą danych, jeśli sterownik jest poprawny
         return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
     }

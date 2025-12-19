@@ -2,6 +2,7 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "c:\\Users\\seba0\\OneDrive\\Dokumenty\\GitHub\\QuizGame\\quizgame\\lib\\mysql-connector-j-9.5.0.jar"
     ]
 }

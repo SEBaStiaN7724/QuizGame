@@ -6,69 +6,85 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameScreen extends JFrame {
-    private List<Question> questions;
-    private String[] playerNames;
-    private int[] playerScores;
+    protected List<Question> questions;
+    protected String[] playerNames;
+    protected int[] playerScores;
     
-    // Zmienne stanu gry
-    private int currentQuestionIndex = 0;
-    private int currentPlayerIndex = 0; // 0 = pierwszy gracz, 1 = drugi...
+    protected int currentQuestionIndex = 0;
+    protected int currentPlayerIndex = 0;
 
-    // Elementy interfejsu
-    private JLabel questionLabel;
-    private JLabel statusLabel;
-    private JButton[] answerButtons;
+    protected JLabel questionLabel;
+    protected JLabel statusLabel;
+    protected JButton[] answerButtons;
 
-    public GameScreen(String[] playerNames, int questionCount, String category) {
+    public GameScreen(String[] playerNames, int roundsPerPlayer, String category) {
         this.playerNames = playerNames;
         this.playerScores = new int[playerNames.length];
-        
-        // 1. Konfiguracja okna
-        setTitle("Quiz Game - Rozgrywka");
+    
+        initInitialScores(); 
+
+        setTitle("Quiz Game - " + getGameTitle());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 500);
+        setSize(850, 550);
         setLayout(new BorderLayout(10, 10));
-        getContentPane().setBackground(Colors.LIGHT_BLUE); // Używamy Twojej klasy Colors
+        getContentPane().setBackground(Colors.LIGHT_BLUE); 
 
-        // 2. Pobranie pytań z bazy
-        loadQuestionsFromDB(questionCount, category);
+        //  Pobieranie pytań
+        int totalQuestionsNeeded = roundsPerPlayer * playerNames.length;
+        loadQuestions(totalQuestionsNeeded, category);
 
-        // Zabezpieczenie przed pustą bazą
         if (questions.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "Brak pytań w bazie!\nUpewnij się, że wykonałeś polecenia INSERT w bazie MySQL.", 
-                "Błąd", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Brak pytań w bazie!", "Błąd", JOptionPane.ERROR_MESSAGE);
             dispose();
             return;
         }
 
-        // 3. Budowa interfejsu
-        initUI();
-        
-        // 4. Rozpoczęcie pierwszej tury
+        startWindow();
         displayCurrentState();
         
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    private void initUI() {
-        // Górny pasek statusu
-        statusLabel = new JLabel("Start gry...", SwingConstants.CENTER);
+    protected void initInitialScores() {
+        // W klasycznej grze startujemy od 0
+        for(int i=0; i<playerScores.length; i++) playerScores[i] = 0;
+    }
+
+    protected String getGameTitle() {
+        return "Tryb Klasyczny";
+    }
+
+    protected String getScoreUnit() {
+        return "pkt";
+    }
+
+    protected void onAnswer(boolean isCorrect, Question currentQ) {
+        // zwykła logika punktacji
+        if (isCorrect) {
+            playerScores[currentPlayerIndex]++;
+            JOptionPane.showMessageDialog(this, "Poprawna odpowiedź! (+1 pkt)");
+        } else {
+            String correctTxt = getCorrectAnswerText(currentQ);
+            JOptionPane.showMessageDialog(this, "Błąd! Poprawna to: " + correctTxt);
+        }
+    }
+
+    private void startWindow() {
+        statusLabel = new JLabel("Start...", SwingConstants.CENTER);
         statusLabel.setFont(new Font("Arial", Font.BOLD, 18));
         statusLabel.setForeground(Color.WHITE);
         statusLabel.setOpaque(true);
         statusLabel.setBackground(Colors.DARK_BLUE);
-        statusLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        statusLabel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
         add(statusLabel, BorderLayout.NORTH);
 
-        // Środek - Pytanie i przyciski
-        JPanel centerPanel = new JPanel(new GridLayout(5, 1, 15, 15)); // 1 wiersz na pytanie, 4 na odp.
+        JPanel centerPanel = new JPanel(new GridLayout(5, 1, 15, 15));
         centerPanel.setBackground(Colors.LIGHT_BLUE);
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
-        questionLabel = new JLabel("Ładowanie pytania...", SwingConstants.CENTER);
-        questionLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        questionLabel = new JLabel("", SwingConstants.CENTER);
+        questionLabel.setFont(new Font("Arial", Font.BOLD, 20));
         centerPanel.add(questionLabel);
 
         answerButtons = new JButton[4];
@@ -78,49 +94,40 @@ public class GameScreen extends JFrame {
             answerButtons[i].setFont(new Font("Arial", Font.PLAIN, 16));
             answerButtons[i].setFocusPainted(false);
             
-            // Obsługa kliknięcia
             int index = i; 
-            answerButtons[i].addActionListener(e -> handleAnswer(index));
-            
+            answerButtons[i].addActionListener(e -> checkAnswer(index));
             centerPanel.add(answerButtons[i]);
         }
         add(centerPanel, BorderLayout.CENTER);
     }
 
-    // --- LOGIKA GRY ---
-
-    private void handleAnswer(int answerIndex) {
+    private void checkAnswer(int answerIndex) {
         Question currentQ = questions.get(currentQuestionIndex);
-        List<Question.Answer> answers = currentQ.getAnswers();
-
-        if (answerIndex < answers.size()) {
-            boolean isCorrect = answers.get(answerIndex).isCorrect();
-            
-            if (isCorrect) {
-                playerScores[currentPlayerIndex]++;
-                JOptionPane.showMessageDialog(this, "Brawo! Poprawna odpowiedź.");
-            } else {
-                // Szukamy poprawnej, żeby wyświetlić
-                String correctText = "Brak danych";
-                for(Question.Answer a : answers) if(a.isCorrect()) correctText = a.getText();
-                
-                JOptionPane.showMessageDialog(this, "Niestety, źle.\nPoprawna odpowiedź to: " + correctText);
-            }
+        boolean isCorrect = false;
+        
+        if (answerIndex < currentQ.getAnswers().size()) {
+            isCorrect = currentQ.getAnswers().get(answerIndex).isCorrect();
         }
 
+        onAnswer(isCorrect, currentQ);
+
         nextTurn();
+    }
+    
+    protected String getCorrectAnswerText(Question q) {
+        for(Question.Answer a : q.getAnswers()) {
+            if(a.isCorrect()) return a.getText();
+        }
+        return "Błąd danych";
     }
 
     private void nextTurn() {
         currentPlayerIndex++;
-        
-        // Jeśli przeszliśmy wszystkich graczy dla tego pytania -> nowe pytanie
         if (currentPlayerIndex >= playerNames.length) {
             currentPlayerIndex = 0;
-            currentQuestionIndex++;
         }
+        currentQuestionIndex++;
 
-        // Sprawdzenie końca gry
         if (currentQuestionIndex >= questions.size()) {
             endGame();
         } else {
@@ -129,15 +136,13 @@ public class GameScreen extends JFrame {
     }
 
     private void displayCurrentState() {
-        // Aktualizacja nagłówka
-        statusLabel.setText("Tura gracza: " + playerNames[currentPlayerIndex] + 
-                            "  |  Pytanie " + (currentQuestionIndex + 1) + "/" + questions.size());
-
-        // Aktualizacja pytania
         Question q = questions.get(currentQuestionIndex);
+        String gracz = playerNames[currentPlayerIndex].toUpperCase();
+        int punkty = playerScores[currentPlayerIndex];
+        
+        statusLabel.setText("Gracz: " + gracz + "  |  Wynik: " + punkty + " " + getScoreUnit());
         questionLabel.setText("<html><center>" + q.getText() + "</center></html>");
 
-        // Aktualizacja przycisków
         List<Question.Answer> ans = q.getAnswers();
         for (int i = 0; i < 4; i++) {
             if (i < ans.size()) {
@@ -149,102 +154,78 @@ public class GameScreen extends JFrame {
         }
     }
 
-    // --- KONIEC GRY I BAZA DANYCH ---
-
-    private void endGame() {
+    protected void endGame() {
         StringBuilder sb = new StringBuilder();
-        sb.append("KONIEC GRY!\n\nWyniki:\n");
+        sb.append("KONIEC GRY! (" + getGameTitle() + ")\n\n");
         
-        int maxScore = -1;
-        for (int score : playerScores) {
-            if (score > maxScore) maxScore = score;
-        }
+        int maxScore = -99999;
+        for (int s : playerScores) if (s > maxScore) maxScore = s;
 
         for (int i = 0; i < playerNames.length; i++) {
-            sb.append(playerNames[i]).append(": ").append(playerScores[i]).append(" pkt");
-            if (playerScores[i] == maxScore) sb.append(" (ZWYCIĘZCA!)");
+            sb.append(playerNames[i]).append(": ").append(playerScores[i]).append(" ").append(getScoreUnit());
+            if (playerScores[i] == maxScore) sb.append(" 🏆");
             sb.append("\n");
         }
 
-        // Zapis do bazy
         saveScoresToDB();
-
-        sb.append("\nWyniki zostały zapisane w bazie danych.");
-        
         JOptionPane.showMessageDialog(this, sb.toString());
-        dispose(); // Zamknij okno gry
-        
-        // Opcjonalnie: Powrót do menu
+        dispose();
         SwingUtilities.invokeLater(() -> new QuizConfigScreen());
     }
 
-    private void saveScoresToDB() {
-        String sql = "INSERT INTO wyniki (imie_gracza, punkty) VALUES (?, ?)";
+   private void saveScoresToDB() {
+        // Zaktualizowane zapytanie SQL - dodajemy kolumnę 'tryb_gry'
+        String sql = "INSERT INTO wyniki (imie_gracza, punkty, tryb_gry) VALUES (?, ?, ?)";
         
-        try (Connection conn = JDBC.getConnection();
+        try (Connection conn = JDBC.Connection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             
             for (int i = 0; i < playerNames.length; i++) {
                 ps.setString(1, playerNames[i]);
-                ps.setInt(2, playerScores[i]);
+                ps.setInt(2, playerScores[i]);        
+                ps.setString(3, getGameTitle());
                 ps.executeUpdate();
             }
-            System.out.println("Wyniki zapisane pomyślnie.");
-            
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Błąd zapisu wyników: " + e.getMessage());
         }
     }
 
-    private void loadQuestionsFromDB(int limit, String categoryName) {
+    private void loadQuestions(int totalNeeded, String categoryName) {
         questions = new ArrayList<>();
-        
-        // Pobieramy ID pytań i treść
-        String sqlContent = "SELECT c.content_id, c.content_text FROM content c " +
-                            "JOIN category cat ON c.category_id = cat.category_id " +
-                            "WHERE cat.category_name LIKE ? " +
-                            "ORDER BY RAND() LIMIT ?";
-                            
-        // Jeśli wybrano "Ogólny", pobieramy wszystko (wildcard %)
         if (categoryName.equals("Ogólny")) categoryName = "%";
 
-        try (Connection conn = JDBC.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sqlContent)) {
-            
-            ps.setString(1, categoryName);
-            ps.setInt(2, limit);
+        String sql = "SELECT c.content_id, c.content_text FROM content c " +
+                     "JOIN category cat ON c.category_id = cat.category_id " +
+                     "WHERE cat.category_name LIKE ? " +
+                     "ORDER BY RAND() LIMIT ?";
 
+        try (Connection conn = JDBC.Connection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, categoryName);
+            ps.setInt(2, totalNeeded);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("content_id");
-                String text = rs.getString("content_text");
-                
-                // Dla każdego pytania pobieramy odpowiedzi
-                List<Question.Answer> answers = loadAnswersForQuestion(conn, id);
-                questions.add(new Question(text, answers));
+                String txt = rs.getString("content_text");
+                questions.add(new Question(txt, loadAnswers(conn, id)));
             }
-            
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Błąd bazy: " + e.getMessage());
         }
     }
 
-    private List<Question.Answer> loadAnswersForQuestion(Connection conn, int contentId) throws SQLException {
+    private List<Question.Answer> loadAnswers(Connection conn, int contentId) throws SQLException {
         List<Question.Answer> list = new ArrayList<>();
-        String sql = "SELECT answer_text, is_correct FROM answer WHERE content_id = ?";
-        
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement("SELECT answer_text, is_correct FROM answer WHERE content_id = ?")) {
             ps.setInt(1, contentId);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                list.add(new Question.Answer(
-                    rs.getString("answer_text"),
-                    rs.getBoolean("is_correct")
-                ));
+                list.add(new Question.Answer(rs.getString("answer_text"), rs.getBoolean("is_correct")));
             }
         }
-        // Mieszamy odpowiedzi, żeby nie zawsze A było poprawne
         Collections.shuffle(list);
         return list;
     }

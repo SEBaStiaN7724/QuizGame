@@ -2,7 +2,7 @@
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.swing.SwingUtilities; // <--- WAŻNE: Dodany import
+import javax.swing.SwingUtilities;
 
 public class QuizGame {
 
@@ -19,7 +19,7 @@ public class QuizGame {
 
         // Test połączenia z bazą w tle (logujemy wynik w konsoli)
         new Thread(() -> {
-            try (Connection conn = JDBC.getConnection()) {
+            try (Connection conn = JDBC.Connection()) {
                 System.out.println("Połączenie z bazą danych (question) udane!");
             } catch (SQLException e) {
                 System.err.println("Błąd połączenia z bazą danych: " + e.getMessage());
