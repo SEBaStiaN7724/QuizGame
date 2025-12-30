@@ -1,0 +1,13 @@
+Gracz 1;6;Klasyczny
+Gracz 1;-1000;Na Milion
+Gracz 1;1;Klasyczny
+Gracz 1;1;Klasyczny
+ksa;0;Klasyczny
+asa;0;Klasyczny
+SEb;-500;Na Milion
+AC;1500;Na Milion
+Gracz 1;0;Survival
+Gracz 1;3500;Na Milion
+cer;-1000;Na Milion
+Gracz 1;3500;Na Milion
+Gracz 1;5;Klasyczny
