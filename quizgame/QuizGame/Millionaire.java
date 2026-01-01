@@ -2,12 +2,12 @@ package QuizGame;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
-public class MillionaireGameScreen extends GameScreen {
+public class Millionaire extends GameScreen {
 
     private int limitPytan;
     private int[] liczniki; 
 
-    public MillionaireGameScreen(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {
+    public Millionaire(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {
         super(imiona, tryb, kategoria, iloscPytan); 
         
         this.limitPytan = iloscPytan;

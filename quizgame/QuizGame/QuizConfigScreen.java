@@ -94,7 +94,7 @@ public class QuizConfigScreen extends JFrame {
         if (tryb.equals("Survival")) {
             new Survival(imionaGraczy, tryb, kategoria, iloscPytan);
         } else if (tryb.equals("Milionerzy")) {
-            new MillionaireGameScreen(imionaGraczy, tryb, kategoria, iloscPytan);
+            new Millionaire(imionaGraczy, tryb, kategoria, iloscPytan);
         } else {
             new GameScreen(imionaGraczy, tryb, kategoria, iloscPytan);
         }
