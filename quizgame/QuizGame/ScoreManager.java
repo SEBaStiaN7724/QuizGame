@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ScoreManager {
 
-    private static final String SCIEZKA_PLIKU = "QuizGame/wyniki.txt";
+    private static final String SCIEZKA_PLIKU = "wyniki.txt";
 
     public static void zapiszWynik(String imie, int punkty, String tryb) {
         try {

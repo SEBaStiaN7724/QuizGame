@@ -9,6 +9,7 @@ public class Millionaire extends GameScreen {
 
     public Millionaire(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {
         super(imiona, tryb, kategoria, iloscPytan); 
+        liczniki = new int[gracze.size()];
         
         this.limitPytan = iloscPytan;
 
@@ -21,10 +22,6 @@ public class Millionaire extends GameScreen {
 
     @Override
     protected void aktualizujStatus() {
-
-        if (liczniki == null) {
-            liczniki = new int[gracze.size()];
-        }
 
         Player g = gracze.get(indeksAktualnegoGracza);
         int zostalo = limitPytan - liczniki[indeksAktualnegoGracza];

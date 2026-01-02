@@ -6,7 +6,6 @@ public class Survival extends GameScreen {
 
     public Survival(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {
         super(imiona, tryb, kategoria, iloscPytan); 
-        getContentPane().setBackground(Colors.DARK_RED);
         labelStatus.setText("SURVIVAL (" + kategoria + ") - Jeden błąd kończy grę!");
     }
 

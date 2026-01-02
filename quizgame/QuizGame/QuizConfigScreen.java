@@ -65,7 +65,7 @@ public class QuizConfigScreen extends JFrame {
 
         // Sprawdzamy ile pytań realnie potrzebujemy
         int potrzebnePytania = iloscPytan * liczbaGraczy;
-        ArrayList<Question> dostepne = QuestionLoader.wczytajPytania("QuizGame/pytania.txt", kategoria);
+        ArrayList<Question> dostepne = QuestionLoader.wczytajPytania("pytania.txt", kategoria);
         
         if (dostepne.size() < potrzebnePytania) {
             JOptionPane.showMessageDialog(this, 

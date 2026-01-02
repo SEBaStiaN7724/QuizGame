@@ -35,10 +35,9 @@ public class GameScreen extends JFrame {
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(Colors.LIGHT_BLUE);
 
         // Wczytujemy pytania
-        this.listaPytan = QuestionLoader.wczytajPytania("QuizGame/pytania.txt", kategoria);
+        this.listaPytan = QuestionLoader.wczytajPytania("pytania.txt", kategoria);
 
         // Obliczamy ile łącznie potrzeba
         int wymaganaLiczbaPytan = iloscPytanNaGracza * gracze.size();
