@@ -6,7 +6,15 @@ public class Survival extends GameScreen {
 
     public Survival(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {
         super(imiona, tryb, kategoria, iloscPytan); 
-        labelStatus.setText("SURVIVAL (" + kategoria + ") - Jeden błąd kończy grę!");
+
+    }
+    @Override
+    protected void aktualizujStatus() {
+        if (gracze.isEmpty()) return;
+        
+        Player p = gracze.get(0); 
+        // Wyświetlamy serię poprawnych odpowiedzi jako punkty
+        labelStatus.setText("SURVIVAL (" + wybranaKategoria + ") | Seria: " + p.getPunkty() + " | Jeden błąd kończy grę!");
     }
 
     @Override
@@ -18,7 +26,6 @@ public class Survival extends GameScreen {
         if (wybranyIndeks == q.poprawnyIndeks) {
             jedynyGracz.dodajPunkty(1); 
             JOptionPane.showMessageDialog(this, "Dobrze! Przetrwałeś.");
-            aktualizujStatus();
             numerPytania++;
             pokazPytanie();
         } else {
@@ -33,7 +40,9 @@ public class Survival extends GameScreen {
         Player p = gracze.get(0);
         ScoreManager.zapiszWynik(p.getImie(), p.getPunkty(), "Survival");
         String top = ScoreManager.pobierzNajlepszeWyniki("Survival");
-        JOptionPane.showMessageDialog(this, "Koniec Survivalu! Wynik: " + p.getPunkty() + "\n\n" + top);
+        
+        // Wyświetlamy wynik jako "Przetrwano X pytań"
+        JOptionPane.showMessageDialog(this, "Koniec Survivalu!\nPrzetrwano pytań: " + p.getPunkty() + "\n\n" + top);
         dispose();
         new QuizConfigScreen();
     }
