@@ -6,7 +6,7 @@ public class QuizTest {
     @Test
     void testNowyGraczMaZeroPunktow() {
         Player p = new Player("Tester");
-        assertEquals(0, p.punkty, "Nowy gracz powinien mieć 0 punktów");
+        assertEquals(0, p.getPunkty(), "Nowy gracz powinien mieć 0 punktów");
     }
 
     @Test

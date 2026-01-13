@@ -14,7 +14,7 @@ public class Millionaire extends GameScreen {
         this.limitPytan = iloscPytan;
 
         for (Player p : gracze) {
-            p.punkty = 1000;
+            p.setPunkty(1000);
         }
         
         aktualizujStatus();
@@ -26,7 +26,7 @@ public class Millionaire extends GameScreen {
         Player g = gracze.get(indeksAktualnegoGracza);
         int zostalo = limitPytan - liczniki[indeksAktualnegoGracza];
         
-        labelStatus.setText("Tura: " + g.imie + " | Portfel: " + g.punkty + " zł | Pytania: " + zostalo);
+        labelStatus.setText("Tura: " + g.getImie() + " | Portfel: " + g.getPunkty() + " zł | Pytania: " + zostalo);
     }
 
     @Override
@@ -38,18 +38,18 @@ public class Millionaire extends GameScreen {
         liczniki[indeksAktualnegoGracza]++;
 
         if (wybranyIndeks == q.poprawnyIndeks) {
-            aktualny.punkty += 500;
+            aktualny.dodajPunkty(500);
             JOptionPane.showMessageDialog(this, "Dobrze! +500 zł");
         } else {
-            aktualny.punkty -= 1000;
+            aktualny.dodajPunkty(-1000); 
             String info = (wybranyIndeks == -1) ? "Czas minął!" : "Błąd!";
             JOptionPane.showMessageDialog(this, info + " -1000 zł\nPoprawna: " + q.odpowiedzi[q.poprawnyIndeks]);
         }
 
-        if (aktualny.punkty < 0) {
+        if (aktualny.getPunkty() < 0) {
             JOptionPane.showMessageDialog(this, "Bankructwo! Odpadasz.");
         } else if (liczniki[indeksAktualnegoGracza] >= limitPytan) {
-            JOptionPane.showMessageDialog(this, "Koniec Twoich pytań. Zabierasz: " + aktualny.punkty + " zł");
+            JOptionPane.showMessageDialog(this, "Koniec Twoich pytań. Zabierasz: " + aktualny.getPunkty() + " zł");
         }
 
         przejdzDoNastepnego();
@@ -62,7 +62,7 @@ public class Millionaire extends GameScreen {
                 indeksAktualnegoGracza = 0;
             }
 
-            if (gracze.get(indeksAktualnegoGracza).punkty >= 0 && liczniki[indeksAktualnegoGracza] < limitPytan) {
+            if (gracze.get(indeksAktualnegoGracza).getPunkty() >= 0 && liczniki[indeksAktualnegoGracza] < limitPytan) {
                 numerPytania++;
                 if (numerPytania < listaPytan.size()) pokazPytanie();
                 else koniecGry();

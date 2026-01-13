@@ -16,7 +16,7 @@ public class Survival extends GameScreen {
         Player jedynyGracz = gracze.get(0); 
 
         if (wybranyIndeks == q.poprawnyIndeks) {
-            jedynyGracz.punkty++; 
+            jedynyGracz.dodajPunkty(1); 
             JOptionPane.showMessageDialog(this, "Dobrze! Przetrwałeś.");
             aktualizujStatus();
             numerPytania++;
@@ -31,9 +31,9 @@ public class Survival extends GameScreen {
     @Override
     public void koniecGry() {
         Player p = gracze.get(0);
-        ScoreManager.zapiszWynik(p.imie, p.punkty, "Survival");
+        ScoreManager.zapiszWynik(p.getImie(), p.getPunkty(), "Survival");
         String top = ScoreManager.pobierzNajlepszeWyniki("Survival");
-        JOptionPane.showMessageDialog(this, "Koniec Survivalu! Wynik: " + p.punkty + "\n\n" + top);
+        JOptionPane.showMessageDialog(this, "Koniec Survivalu! Wynik: " + p.getPunkty() + "\n\n" + top);
         dispose();
         new QuizConfigScreen();
     }

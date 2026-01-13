@@ -6,8 +6,8 @@ public class KonsolaTest {
         
         // 1. Test gracza
         Player p = new Player("Adam");
-        p.punkty += 10;
-        System.out.println("Gracz: " + p.imie + ", Pkt: " + p.punkty);
+        p.dodajPunkty(10);
+        System.out.println("Gracz: " + p.getImie() + ", Pkt: " + p.getPunkty());
 
         // 2. Test pytania
         String[] odp = {"1", "2", "3", "4"};

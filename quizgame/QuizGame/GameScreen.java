@@ -126,8 +126,8 @@ public class GameScreen extends JFrame {
         if (wybranyIndeks == -1) {
             // Czas minął
         } else if (wybranyIndeks == q.poprawnyIndeks) {
-            aktualnyGracz.punkty++; 
-            JOptionPane.showMessageDialog(this, "Dobrze! Punkt dla: " + aktualnyGracz.imie);
+            aktualnyGracz.dodajPunkty(1);; 
+            JOptionPane.showMessageDialog(this, "Dobrze! Punkt dla: " + aktualnyGracz.getImie());
         } else {
             JOptionPane.showMessageDialog(this, "Źle! Poprawna to: " + q.odpowiedzi[q.poprawnyIndeks]);
         }
@@ -143,15 +143,15 @@ public class GameScreen extends JFrame {
     
     protected void aktualizujStatus() {
         Player g = gracze.get(indeksAktualnegoGracza);
-        labelStatus.setText("Tura: " + g.imie + " | Pkt: " + g.punkty + " | " + trybGry);
+        labelStatus.setText("Tura: " + g.getImie() + " | Pkt: " + g.getPunkty() + " | " + trybGry);
     }
 
     public void koniecGry() {
         zegar.stop();
         StringBuilder wyniki = new StringBuilder("Koniec gry!\n");
         for (Player p : gracze) {
-            ScoreManager.zapiszWynik(p.imie, p.punkty, trybGry);
-            wyniki.append(p.imie).append(": ").append(p.punkty).append(" pkt\n");
+            ScoreManager.zapiszWynik(p.getImie(), p.getPunkty(), trybGry);
+            wyniki.append(p.getImie()).append(": ").append(p.getPunkty()).append(" pkt\n");
         }
         
         String top = ScoreManager.pobierzNajlepszeWyniki(trybGry);
