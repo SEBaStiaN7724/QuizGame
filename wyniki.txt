@@ -1,1 +1,2 @@
 Gracz 1;3;Klasyczny
+Gracz 1;4;Klasyczny

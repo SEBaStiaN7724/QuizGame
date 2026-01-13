@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class QuizConfigScreen extends JFrame {
     JSpinner spinnerPytania;
     JSpinner spinnerGracze;
-    JComboBox<String> comboKategoria;
+    JComboBox<Category> comboKategoria;
     JComboBox<String> comboTryb;
     JTextField poleImie;
     JButton btnStart;
@@ -32,8 +32,7 @@ public class QuizConfigScreen extends JFrame {
         add(spinnerGracze);
 
         add(new JLabel("  Kategoria:", SwingConstants.LEFT));
-        String[] kategorie = {"Ogólny", "Historia", "Nauka", "Sport", "Geografia"};
-        comboKategoria = new JComboBox<>(kategorie);
+        comboKategoria = new JComboBox<>(Category.values());
         add(comboKategoria);
 
         add(new JLabel("  Tryb Gry:", SwingConstants.LEFT));
@@ -53,7 +52,8 @@ public class QuizConfigScreen extends JFrame {
     void pobierzUstawieniaIStartu() {
         String imieGracza1 = poleImie.getText();
         String tryb = (String) comboTryb.getSelectedItem();
-        String kategoria = (String) comboKategoria.getSelectedItem();
+        Category wybranaKategoriaEnum = (Category) comboKategoria.getSelectedItem();
+        String kategoria = wybranaKategoriaEnum.getNazwa();
         int iloscPytan = (int) spinnerPytania.getValue();
         int liczbaGraczy = (int) spinnerGracze.getValue();
 
