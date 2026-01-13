@@ -14,6 +14,7 @@ public class GameScreen extends JFrame {
 
     protected String wybranaKategoria; 
     protected String trybGry; 
+    protected int limitNaGracza;
     
     protected JLabel labelPytanie;
     protected JLabel labelStatus;
@@ -30,6 +31,9 @@ public class GameScreen extends JFrame {
 
         this.trybGry = tryb; 
         this.wybranaKategoria = kategoria;
+        
+        // ZAPISUJEMY LIMIT (potrzebny do wyświetlania "Pytanie 1 z 5" zamiast "1 z 20")
+        this.limitNaGracza = iloscPytanNaGracza;
 
         setTitle("Quiz - " + tryb + " [" + kategoria + "]");
         setSize(700, 600);
@@ -104,8 +108,14 @@ public class GameScreen extends JFrame {
         aktualizujStatus();
 
         Question q = listaPytan.get(numerPytania);
-        // Wyświetlamy też numer pytania w nagłówku
-        labelPytanie.setText("<html><center>Pytanie " + (numerPytania + 1) + " z " + listaPytan.size() + "<br>[" + q.kategoria + "]<br>" + q.tresc + "</center></html>");
+
+        // --- ZMIANA: Obliczamy numer pytania dla konkretnego gracza ---
+        // Ponieważ gra jest turowa (Gracz1 -> Gracz2 -> Gracz1...), wystarczy prosta matematyka.
+        // Dzielenie całkowite przez liczbę graczy + 1 daje nam numer tury.
+        int nrPytaniaGracza = (numerPytania / gracze.size()) + 1;
+
+        // Wyświetlamy "Pytanie X z [limitNaGracza]" zamiast sumy całkowitej
+        labelPytanie.setText("<html><center>Pytanie " + nrPytaniaGracza + " z " + limitNaGracza + "<br>[" + q.kategoria + "]<br>" + q.tresc + "</center></html>");
         
         for (int i = 0; i < 4; i++) {
             przyciski[i].setText(q.odpowiedzi[i]);

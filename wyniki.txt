@@ -1,2 +1,10 @@
 Gracz 1;3;Klasyczny
 Gracz 1;4;Klasyczny
+Gracz 1;1;Klasyczny
+vert;2;Klasyczny
+Gracz 1;2000;Milionerzy
+Gracz 1;-1000;Milionerzy
+bron;-500;Milionerzy
+Gracz 1;-500;Milionerzy
+bfd;-500;Milionerzy
+Gracz 1;0;Survival

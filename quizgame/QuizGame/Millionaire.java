@@ -4,29 +4,44 @@ import java.util.ArrayList;
 
 public class Millionaire extends GameScreen {
 
-    private int limitPytan;
     private int[] liczniki; 
 
     public Millionaire(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {
         super(imiona, tryb, kategoria, iloscPytan); 
+                
         liczniki = new int[gracze.size()];
-        
-        this.limitPytan = iloscPytan;
 
         for (Player p : gracze) {
-            p.setPunkty(1000);
+            p.setPunkty(1000); // Startowa kwota
         }
         
         aktualizujStatus();
+        pokazPytanie(); 
     }
 
     @Override
     protected void aktualizujStatus() {
+        if (liczniki == null) return; // Zabezpieczenie przed błędem NullPointer
 
         Player g = gracze.get(indeksAktualnegoGracza);
-        int zostalo = limitPytan - liczniki[indeksAktualnegoGracza];
         
-        labelStatus.setText("Tura: " + g.getImie() + " | Portfel: " + g.getPunkty() + " zł | Pytania: " + zostalo);
+
+        int zostalo = limitNaGracza - liczniki[indeksAktualnegoGracza];
+        
+        labelStatus.setText("Tura: " + g.getImie() + " | Portfel: " + g.getPunkty() + " zł | Do końca: " + zostalo);
+    }
+
+    @Override
+    protected void pokazPytanie() {
+        super.pokazPytanie(); // Wywołujemy logikę bazową (pobranie pytania, zegar)
+
+        if (liczniki == null || numerPytania >= listaPytan.size()) return;
+
+        Question q = listaPytan.get(numerPytania);
+        int nrPytaniaGracza = liczniki[indeksAktualnegoGracza] + 1;
+
+        labelPytanie.setText("<html><center>Pytanie " + nrPytaniaGracza + " z " + limitNaGracza + 
+                             "<br>[" + q.kategoria + "]<br>" + q.tresc + "</center></html>");
     }
 
     @Override
@@ -46,9 +61,10 @@ public class Millionaire extends GameScreen {
             JOptionPane.showMessageDialog(this, info + " -1000 zł\nPoprawna: " + q.odpowiedzi[q.poprawnyIndeks]);
         }
 
+        // Sprawdzamy warunki końca dla gracza
         if (aktualny.getPunkty() < 0) {
             JOptionPane.showMessageDialog(this, "Bankructwo! Odpadasz.");
-        } else if (liczniki[indeksAktualnegoGracza] >= limitPytan) {
+        } else if (liczniki[indeksAktualnegoGracza] >= limitNaGracza) { 
             JOptionPane.showMessageDialog(this, "Koniec Twoich pytań. Zabierasz: " + aktualny.getPunkty() + " zł");
         }
 
@@ -62,10 +78,13 @@ public class Millionaire extends GameScreen {
                 indeksAktualnegoGracza = 0;
             }
 
-            if (gracze.get(indeksAktualnegoGracza).getPunkty() >= 0 && liczniki[indeksAktualnegoGracza] < limitPytan) {
+            if (gracze.get(indeksAktualnegoGracza).getPunkty() >= 0 && liczniki[indeksAktualnegoGracza] < limitNaGracza) {
                 numerPytania++;
-                if (numerPytania < listaPytan.size()) pokazPytanie();
-                else koniecGry();
+                if (numerPytania < listaPytan.size()) {
+                    pokazPytanie();
+                } else {
+                    koniecGry();
+                }
                 return;
             }
         }
