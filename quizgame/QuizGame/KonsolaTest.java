@@ -13,8 +13,8 @@ public class KonsolaTest {
         String[] odp = {"1", "2", "3", "4"};
         Question q = new Question("Ile to 2+2?", "Nauka", odp, 3); // Poprawna to "4"
         
-        System.out.println("Pytanie: " + q.tresc);
+        System.out.println("Pytanie: " + q.getTresc());
         System.out.println("Czy '4' jest pod poprawnym indeksem? " + 
-                           q.odpowiedzi[q.poprawnyIndeks].equals("4"));
+                           q.getOdpowiedzi()[q.getPoprawnyIndeks()].equals("4"));
     }
 }

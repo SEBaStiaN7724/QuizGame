@@ -2,7 +2,7 @@ package QuizGame;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
-public class Millionaire extends GameScreen {
+public class Millionaire extends Game {
 
     private int[] liczniki; 
 
@@ -41,7 +41,7 @@ public class Millionaire extends GameScreen {
         int nrPytaniaGracza = liczniki[indeksAktualnegoGracza] + 1;
 
         labelPytanie.setText("<html><center>Pytanie " + nrPytaniaGracza + " z " + limitNaGracza + 
-                             "<br>[" + q.kategoria + "]<br>" + q.tresc + "</center></html>");
+                             "<br>[" + q.getKategoria() + "]<br>" + q.getTresc() + "</center></html>");
     }
 
     @Override
@@ -52,13 +52,13 @@ public class Millionaire extends GameScreen {
 
         liczniki[indeksAktualnegoGracza]++;
 
-        if (wybranyIndeks == q.poprawnyIndeks) {
+        if (wybranyIndeks == q.getPoprawnyIndeks()) {
             aktualny.dodajPunkty(500);
             JOptionPane.showMessageDialog(this, "Dobrze! +500 zł");
         } else {
             aktualny.dodajPunkty(-1000); 
             String info = (wybranyIndeks == -1) ? "Czas minął!" : "Błąd!";
-            JOptionPane.showMessageDialog(this, info + " -1000 zł\nPoprawna: " + q.odpowiedzi[q.poprawnyIndeks]);
+            JOptionPane.showMessageDialog(this, info + " -1000 zł\nPoprawna: " + q.getOdpowiedzi()[q.getPoprawnyIndeks()]);
         }
 
         // Sprawdzamy warunki końca dla gracza

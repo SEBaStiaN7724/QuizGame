@@ -16,6 +16,6 @@ public class QuizTest {
         Question q = new Question("Pytanie?", "Test", odp, 1);
         
         // Sprawdzamy, czy poprawnyIndeks wskazuje na "B" w nowej, pomieszanej tablicy
-        assertEquals("B", q.odpowiedzi[q.poprawnyIndeks]);
+        assertEquals("B", q.getOdpowiedzi()[q.getPoprawnyIndeks()]);
     }
 }

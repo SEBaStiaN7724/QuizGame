@@ -9,3 +9,4 @@ Gracz 1;-500;Milionerzy
 bfd;-500;Milionerzy
 Gracz 1;0;Survival
 Gracz 1;1;Survival
+nuka;-1000;Milionerzy

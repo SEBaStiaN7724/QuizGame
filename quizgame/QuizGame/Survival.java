@@ -2,7 +2,7 @@ package QuizGame;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
-public class Survival extends GameScreen {
+public class Survival extends Game {
 
     public Survival(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {
         super(imiona, tryb, kategoria, iloscPytan); 
@@ -23,14 +23,14 @@ public class Survival extends GameScreen {
         Question q = listaPytan.get(numerPytania);
         Player jedynyGracz = gracze.get(0); 
 
-        if (wybranyIndeks == q.poprawnyIndeks) {
+        if (wybranyIndeks == q.getPoprawnyIndeks()) {
             jedynyGracz.dodajPunkty(1); 
             JOptionPane.showMessageDialog(this, "Dobrze! Przetrwałeś.");
             numerPytania++;
             pokazPytanie();
         } else {
             String poprawna = (wybranyIndeks == -1) ? "Czas minął!" : "Błąd!";
-            JOptionPane.showMessageDialog(this, poprawna + "\nPoprawna: " + q.odpowiedzi[q.poprawnyIndeks]);
+            JOptionPane.showMessageDialog(this, poprawna + "\nPoprawna: " + q.getOdpowiedzi()[q.getPoprawnyIndeks()]);
             koniecGry();
         }
     }
