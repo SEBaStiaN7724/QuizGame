@@ -46,7 +46,8 @@ Java JDK 17 lub nowsza.
 
 **Aby zapewnić poprawną kompilację i odtwarzalność projektu, należy zachować następującą strukturę:**
 
-``` Nazwa_Folderu/
+```
+Nazwa_Folderu/
 ├── pytania.txt           # Plik z bazą pytań (w głównym katalogu)
 
 ├── wyniki.txt            # (Generowany automatycznie) Plik z rankingiem
