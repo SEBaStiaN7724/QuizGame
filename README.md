@@ -1,12 +1,16 @@
 # QuizGame
 **QuizGame to aplikacja okienkowa (desktopowa)** napisana w języku Java z wykorzystaniem biblioteki Swing. Celem projektu jest symulacja gry typu quiz z obsługą wielu graczy, oferująca zróżnicowane tryby rozgrywki oraz system zarządzania wynikami. Projekt demonstruje praktyczne zastosowanie paradygmatów programowania obiektowego.
-
-##📋 Opis Funkcjonalności
+ 
+## 📋 Opis Funkcjonalności
 Aplikacja umożliwia przeprowadzenie rozgrywki wiedzy w systemie turowym. Główne funkcje obejmują:
 **Konfiguracja rozgrywki:** Przed startem użytkownik definiuje parametry gry: liczbę graczy, liczbę pytań na osobę, kategorię tematyczną oraz tryb gry.
+
 **System kategorii:** Wybór tematyki pytań realizowany jest w oparciu o bezpieczny typ wyliczeniowy (Enum), co gwarantuje spójność danych.
+
 **Mechanika czasu:** Każde pytanie posiada limit czasowy, odliczany przez niezależny wątek zegara (Timer), co wymusza szybkie podejmowanie decyzji.
+
 **Zapis wyników:** Aplikacja automatycznie archiwizuje osiągnięcia graczy w pliku tekstowym (wyniki.txt) i prezentuje tabelę liderów po zakończeniu partii.
+
 **Walidacja danych:** System weryfikuje dostępność wystarczającej liczby pytań w bazie przed rozpoczęciem gry, zapobiegając błędom w trakcie rozgrywki.
 
 ## 🎮 Tryby Gry 
