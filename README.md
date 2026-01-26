@@ -25,8 +25,32 @@ Pytania są losowane i mieszane co eliminuje szanse na powtarzanie się zestawu 
 
 **Survival:** *Tryb dla jednego gracza. Gra toczy się do pierwszego błędu. Celem jest przetrwanie jak największej liczby pytań.*
 
+##📖 Instrukcja Obsługi
+**Konfiguracja:** Po uruchomieniu wpisz imię pierwszego gracza, wybierz liczbę uczestników, kategorię pytań oraz tryb gry.
+
+**Start:** Kliknij "Rozpocznij Grę". Jeśli wybrałeś więcej niż 1 gracza, aplikacja poprosi o podanie imion pozostałych osób.
+
+***Rozgrywka:***
+
+*Masz 30 sekund na odpowiedź (zegar zmienia kolor na czerwony przy ostatnich 5 sekundach).*
+
+*W trybie Milionerzy uważaj na stan portfela – ujemny bilans oznacza bankructwo.*
+
+*W trybie Survival każda pomyłka kończy Twoją grę.*
+
+**Koniec:** Po zakończeniu serii pytań wyświetlone zostanie podsumowanie oraz lokalna tabela rekordów pobrana z pliku wyniki.txt.
+
 ## 🚀 Uruchomienie i Testowanie
 **Wymagania:** 
 Java JDK 17 lub nowsza.
 
-Plik pytania.txt w głównym katalogu
+**Aby zapewnić poprawną kompilację i odtwarzalność projektu, należy zachować następującą strukturę:**
+
+Nazwa_Folderu/
+├── pytania.txt           # Plik z bazą pytań (w głównym katalogu)
+├── wyniki.txt            # (Generowany automatycznie) Plik z rankingiem
+└── src/                  # Katalog ze źródłami
+    └── QuizGame/         # Pakiet główny
+        ├── QuizGame.java # Klasa startowa
+        ├── Game.java
+        └── ... (pozostałe klasy)
