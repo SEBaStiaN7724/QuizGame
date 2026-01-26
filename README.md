@@ -1,30 +1,32 @@
-# QuizGame
-**QuizGame to aplikacja okienkowa (desktopowa)** napisana w języku Java z wykorzystaniem biblioteki Swing. Celem projektu jest symulacja gry typu quiz z obsługą wielu graczy, oferująca zróżnicowane tryby rozgrywki oraz system zarządzania wynikami. Projekt demonstruje praktyczne zastosowanie paradygmatów programowania obiektowego.
- 
-## 📋 Opis Funkcjonalności
-Aplikacja umożliwia przeprowadzenie rozgrywki wiedzy w systemie turowym. Główne funkcje obejmują:
-**Konfiguracja rozgrywki:** Przed startem użytkownik definiuje parametry gry: liczbę graczy, liczbę pytań na osobę, kategorię tematyczną oraz tryb gry.
 
-**System kategorii:** Wybór tematyki pytań realizowany jest w oparciu o bezpieczny typ wyliczeniowy (Enum), co gwarantuje spójność danych.
+# 🎮 QuizGame
+**QuizGame to aplikacja okienkowa (desktopowa)** napisana w języku Java z wykorzystaniem biblioteki Swing.
 
-**Mechanika czasu:** Każde pytanie posiada limit czasowy, odliczany przez niezależny wątek zegara (Timer), co wymusza szybkie podejmowanie decyzji.
+Celem projektu jest symulacja gry typu quiz z obsługą wielu graczy, oferująca zróżnicowane tryby rozgrywki oraz system zarządzania wynikami.
 
-**Zapis wyników:** Aplikacja automatycznie archiwizuje osiągnięcia graczy w pliku tekstowym (wyniki.txt) i prezentuje tabelę liderów po zakończeniu partii.
+Projekt demonstruje praktyczne zastosowanie paradygmatów programowania obiektowego.
 
-**Walidacja danych:** System weryfikuje dostępność wystarczającej liczby pytań w bazie przed rozpoczęciem gry, zapobiegając błędom w trakcie rozgrywki.
+## 📋 Główne Funkcjonalności
+***Aplikacja umożliwia przeprowadzenie dynamicznej rozgrywki wiedzy z następującymi funkcjami:***
 
-## 🎮 Tryby Gry 
-Projekt implementuje polimorfizm poprzez klasę bazową GameScreen i klasy pochodne, oferując trzy unikalne mechaniki:
-**Klasyczny:** *Standardowy tryb punktowy. Wygrywa gracz z największą liczbą poprawnych odpowiedzi w zadanej serii pytań.*
-**Milionerzy:** *Tryb ekonomiczny. Gracze zdobywają wirtualne środki finansowe. Błędna odpowiedź skutkuje karą pieniężną. Gra kończy się po wyczerpaniu pytań lub bankructwie gracza.*
-**Survival:** *Tryb o podwyższonym ryzyku dla jednego gracza. Gra toczy się do momentu popełnienia pierwszego błędu. Celem jest utrzymanie jak najdłuższej serii poprawnych odpowiedzi.*
-##🛠 Aspekty Techniczne (Model Obiektowy)
+**Dynamiczna Konfiguracja:** Wybór liczby graczy (do 4 osób), liczby pytań na głowę oraz kategorii tematycznej.
 
-## 🚀 Uruchomienie 
-**Wymagane środowisko: Java SE Development Kit (JDK).**
+**Zarządzanie Baza Pytań:**  Automatyczne wczytywanie i filtrowanie pytań z pliku tekstowego pytania.txt. 
+Pytania są losowane i mmieszane co eliminuje szanse na powtarzanie się zestawu pytań tak samo zachowują się pola odpowiedzi.
 
-**Skompiluj i uruchom klasę główną:**
+**System Rankingowy:** Trwałe zapisywanie wyników w pliku wyniki.txt oraz prezentacja tabeli najlepszych wyników (TOP 5) dla każdego trybu.
 
-Bash
-javac QuizGame/*.java
-java QuizGame.QuizGame
+## 🕹 Tryby Rozgrywki
+***Aplikacja oferuje trzy zróżnicowane tryby gry:***
+
+**Klasyczny:**  *Standardowa rywalizacja turowa. Gracze zbierają punkty za poprawne odpowiedzi.*
+
+**Milionerzy:** *Tryb ekonomiczny. Każdy gracz zaczyna z kwotą 1000 zł. Poprawna odpowiedź to +500 zł, błędna to kara -1000 zł. Bankructwo kończy grę gracza.*
+
+**Survival:** *Tryb dla jednego gracza. Gra toczy się do pierwszego błędu. Celem jest przetrwanie jak największej liczby pytań.*
+
+## 🚀 Uruchomienie i Testowanie
+**Wymagania:** 
+Java JDK 17 lub nowsza.
+
+Plik pytania.txt w głównym katalogu
