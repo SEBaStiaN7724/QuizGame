@@ -7,12 +7,12 @@ Celem projektu jest symulacja gry typu quiz z obsługą wielu graczy, oferująca
 Projekt demonstruje praktyczne zastosowanie paradygmatów programowania obiektowego.
 
 ## 📋 Główne Funkcjonalności
-***Aplikacja umożliwia przeprowadzenie dynamicznej rozgrywki wiedzy z następującymi funkcjami:***
+***Aplikacja umożliwia przeprowadzenie dynamicznej rozgrywki z następującymi funkcjami:***
 
 **Dynamiczna Konfiguracja:** Wybór liczby graczy (do 4 osób), liczby pytań na głowę oraz kategorii tematycznej.
 
 **Zarządzanie Baza Pytań:**  Automatyczne wczytywanie i filtrowanie pytań z pliku tekstowego pytania.txt. 
-Pytania są losowane i mmieszane co eliminuje szanse na powtarzanie się zestawu pytań tak samo zachowują się pola odpowiedzi.
+Pytania są losowane i mieszane co eliminuje szanse na powtarzanie się zestawu pytań tak samo zachowują się pola odpowiedzi.
 
 **System Rankingowy:** Trwałe zapisywanie wyników w pliku wyniki.txt oraz prezentacja tabeli najlepszych wyników (TOP 5) dla każdego trybu.
 
