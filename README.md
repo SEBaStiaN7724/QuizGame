@@ -25,7 +25,7 @@ Pytania są losowane i mieszane co eliminuje szanse na powtarzanie się zestawu 
 
 **Survival:** *Tryb dla jednego gracza. Gra toczy się do pierwszego błędu. Celem jest przetrwanie jak największej liczby pytań.*
 
-##📖 Instrukcja Obsługi
+## 📖 Instrukcja Obsługi
 **Konfiguracja:** Po uruchomieniu wpisz imię pierwszego gracza, wybierz liczbę uczestników, kategorię pytań oraz tryb gry.
 
 **Start:** Kliknij "Rozpocznij Grę". Jeśli wybrałeś więcej niż 1 gracza, aplikacja poprosi o podanie imion pozostałych osób.
@@ -48,9 +48,15 @@ Java JDK 17 lub nowsza.
 
 Nazwa_Folderu/
 ├── pytania.txt           # Plik z bazą pytań (w głównym katalogu)
+
 ├── wyniki.txt            # (Generowany automatycznie) Plik z rankingiem
+
 └── src/                  # Katalog ze źródłami
+
     └── QuizGame/         # Pakiet główny
+    
         ├── QuizGame.java # Klasa startowa
+        
         ├── Game.java
+        
         └── ... (pozostałe klasy)
