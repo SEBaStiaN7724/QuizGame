@@ -1,5 +1,5 @@
 package QuizGame;
-
+/** Klasa Player reprezentuje gracza w grze quizowej */
 public class Player {
     // ZMIANA: Pola są teraz prywatne (wymóg na punkty)
     private String imie;

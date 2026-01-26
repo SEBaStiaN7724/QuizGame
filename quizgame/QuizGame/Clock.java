@@ -1,5 +1,5 @@
 package QuizGame; 
-
+/** Klasa Clock zarządza odliczaniem czasu w grze quizowej */
 import javax.swing.Timer;
 import javax.swing.JLabel;
 import java.awt.Color;

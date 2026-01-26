@@ -2,7 +2,7 @@ package QuizGame;
 
 import javax.swing.*;
 import java.util.ArrayList;
-
+/** Klasa Game zarządza logiką gry, dziedziczy po Screen (UI) */
 // Game dziedziczy teraz po Screen (UI), a samo zajmuje się logiką
 public class Game extends Screen {
 

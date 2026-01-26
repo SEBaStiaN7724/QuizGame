@@ -1,6 +1,6 @@
 package QuizGame;
 import java.awt.Color;
-
+/** Klasa Colors definiuje stałe kolory używane w GUI gry */
 public class Colors {
     public static final Color LIGHT_BLUE = Color.decode("#5699FD");
     public static final Color DARK_BLUE = Color.decode("#45699E");

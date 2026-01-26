@@ -3,7 +3,7 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class Millionaire extends Game {
-
+/** Klasa Millionaire implementuje tryb "Milionerzy" */
     private int[] liczniki; 
 
     public Millionaire(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {

@@ -1,5 +1,5 @@
 package QuizGame;
-
+/** Klasa Question reprezentuje pytanie w grze quizowej */
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

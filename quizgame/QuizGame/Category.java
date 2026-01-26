@@ -1,5 +1,5 @@
 package QuizGame;
-
+/** Enum Category reprezentuje kategorie pytań w grze quizowej */
 public enum Category {
     OGOLNY("Ogólny"),
     HISTORIA("Historia"),

@@ -1,5 +1,5 @@
 package QuizGame;
-
+/** Klasa testowa do sprawdzania działania modelu obiektowego */
 public class KonsolaTest {
     public static void main(String[] args) {
         System.out.println("--- TEST MODELU OBIEKTOWEGO ---");

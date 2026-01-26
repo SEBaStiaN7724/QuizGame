@@ -1,5 +1,5 @@
 package QuizGame;
-
+/** Abstrakcyjna klasa Screen definiuje wspólny interfejs GUI dla ekranów gry */
 import javax.swing.*;
 import java.awt.*;
 

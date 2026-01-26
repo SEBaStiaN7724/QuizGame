@@ -2,7 +2,7 @@ package QuizGame;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+/** Klasa odpowiedzialna za ekran konfiguracji gry quizowej */
 public class QuizConfigScreen extends JFrame {
     JSpinner spinnerPytania;
     JSpinner spinnerGracze;

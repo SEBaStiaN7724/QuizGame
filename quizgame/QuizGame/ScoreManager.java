@@ -1,5 +1,5 @@
 package QuizGame;
-
+/** Klasa ScoreManager zarządza zapisem i odczytem wyników gry */
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ public class ScoreManager {
             FileWriter pisarz = new FileWriter(plik, true);
             pisarz.write(imie + ";" + punkty + ";" + tryb + "\n");
             pisarz.close();
-        } catch (Exception e) {
-            System.out.println("Błąd zapisu: " + e.getMessage());
+        } catch (Exception wyniki) {
+            System.out.println("NNie udało się zapisać wyniku: " + wyniki.getMessage());
         }
     }
 
@@ -55,8 +55,8 @@ public class ScoreManager {
                 sb.append((i + 1) + ". " + lista.get(i)[0] + ": " + lista.get(i)[1] + "\n");
             }
 
-        } catch (Exception e) {
-            return "Błąd: " + e.getMessage();
+        } catch (Exception wynik) {
+            System.out.println("Błąd: " + wynik.getMessage());
         }
         return sb.toString();
     }

@@ -1,7 +1,7 @@
 package QuizGame;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-
+/** Klasa Survival implementuje tryb "Survival" */
 public class Survival extends Game {
 
     public Survival(ArrayList<String> imiona, String tryb, String kategoria, int iloscPytan) {

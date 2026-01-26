@@ -1,5 +1,5 @@
 package QuizGame;
-
+/** Klasa QuestionLoader wczytuje pytania z pliku tekstowego */
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,8 +43,8 @@ public class QuestionLoader {
             skaner.close();
             Collections.shuffle(lista); // Mieszamy od razu przy wczytywaniu
 
-        } catch (Exception e) {
-            System.out.println("Błąd wczytywania: " + e.getMessage());
+        } catch (Exception odczyt) {
+            System.out.println("Nie udało się wczytać pytań: " + odczyt.getMessage());
         }
         return lista;
     }
