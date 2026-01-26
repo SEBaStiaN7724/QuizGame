@@ -1,7 +1,7 @@
-QuizGame
+#QuizGame
 QuizGame to aplikacja okienkowa (desktopowa) napisana w języku Java z wykorzystaniem biblioteki Swing. Celem projektu jest symulacja gry typu quiz z obsługą wielu graczy, oferująca zróżnicowane tryby rozgrywki oraz system zarządzania wynikami. Projekt demonstruje praktyczne zastosowanie paradygmatów programowania obiektowego.
 
-📋 Opis Funkcjonalności
+##📋 Opis Funkcjonalności
 Aplikacja umożliwia przeprowadzenie rozgrywki wiedzy w systemie turowym. Główne funkcje obejmują:
 
 Konfiguracja rozgrywki: Przed startem użytkownik definiuje parametry gry: liczbę graczy, liczbę pytań na osobę, kategorię tematyczną oraz tryb gry.
@@ -14,7 +14,7 @@ Zapis wyników: Aplikacja automatycznie archiwizuje osiągnięcia graczy w pliku
 
 Walidacja danych: System weryfikuje dostępność wystarczającej liczby pytań w bazie przed rozpoczęciem gry, zapobiegając błędom w trakcie rozgrywki.
 
-🎮 Tryby Gry
+##🎮 Tryby Gry
 Projekt implementuje polimorfizm poprzez klasę bazową GameScreen i klasy pochodne, oferując trzy unikalne mechaniki:
 
 Klasyczny: Standardowy tryb punktowy. Wygrywa gracz z największą liczbą poprawnych odpowiedzi w zadanej serii pytań.
@@ -23,7 +23,7 @@ Milionerzy: Tryb ekonomiczny. Gracze zdobywają wirtualne środki finansowe. Bł
 
 Survival: Tryb o podwyższonym ryzyku dla jednego gracza. Gra toczy się do momentu popełnienia pierwszego błędu. Celem jest utrzymanie jak najdłuższej serii poprawnych odpowiedzi.
 
-🛠 Aspekty Techniczne (Model Obiektowy)
+##🛠 Aspekty Techniczne (Model Obiektowy)
 Kod źródłowy został zorganizowany zgodnie z zasadami OOP:
 
 Hermetyzacja: Klasa Player posiada prywatne pola stanu (punkty, imie), do których dostęp odbywa się wyłącznie poprzez metody akcesorów (gettery/settery).
@@ -34,7 +34,7 @@ Typy wyliczeniowe: Zastosowanie Enum dla kategorii pytań zwiększa czytelność
 
 Operacje I/O: Klasy QuestionLoader oraz ScoreManager odpowiadają za komunikację z systemem plików, wykorzystując obsługę wyjątków (try-catch) do zapewnienia stabilności działania.
 
-🚀 Uruchomienie
+##🚀 Uruchomienie
 Wymagane środowisko: Java SE Development Kit (JDK).
 
 Skompiluj i uruchom klasę główną:
