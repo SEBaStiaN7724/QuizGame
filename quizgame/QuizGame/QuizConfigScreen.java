@@ -99,7 +99,7 @@ void pobierzUstawieniaIStartu() {
             return;
         }
    
-        // Jeśli przeszliśmy walidację, zbieramy imiona
+        // 5. Zbieranie imion pozostałych graczy
         ArrayList<String> imionaGraczy = new ArrayList<>();
         imionaGraczy.add(imieGracza1); 
 

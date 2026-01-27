@@ -18,7 +18,7 @@ public class ScoreManager {
             pisarz.write(imie + ";" + punkty + ";" + tryb + "\n");
             pisarz.close();
         } catch (Exception wyniki) {
-            System.out.println("NNie udało się zapisać wyniku: " + wyniki.getMessage());
+            System.out.println("Nie udało się zapisać wyniku: " + wyniki.getMessage());
         }
     }
 
